@@ -1,24 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+
+import DetailScreen from "./modules/frontend/screens/DetailScreen";
+import FullScreenColorContainer from "./modules/frontend/containers/FullScreenColorContainer";
+import LoginScreen from "./modules/frontend/screens/LoginScreen";
+import MainScreen from "./modules/frontend/screens/MainScreen";
+import React from "react";
+import ThemeContainer from "./modules/frontend/containers/ThemeContainer";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeContainer>
+      <FullScreenColorContainer>
+        <Router>
+          <Routes>
+            <Route path="/" element={<LoginScreen />} />
+            <Route path="/main" element={<MainScreen />} />
+            <Route path="/detail" element={<DetailScreen />} />
+          </Routes>
+        </Router>
+      </FullScreenColorContainer>
+    </ThemeContainer>
   );
 }
 
