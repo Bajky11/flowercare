@@ -3,12 +3,18 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 const theme = createTheme({
   palette: {
     primary: {
-      main: "#3f51b5", // your primary color
+      main: "#4F6F52",
     },
     secondary: {
-      main: "#f50057", // your secondary color
+      main: "#f50057",
     },
-    // Add more colors as needed
+    white: {
+      main: "#ffffff",
+    },
+    background: {
+      main: "rgba(200, 234, 180, 0.7)",
+      light: "rgba(200, 234, 180, 0.3)",
+    },
   },
 });
 
