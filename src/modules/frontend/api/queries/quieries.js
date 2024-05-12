@@ -44,6 +44,17 @@ export async function fetchAllPlantsPagable(pageNumber, pageSize, sort) {
   return await fetchRequest(url, options);
 }
 
+export async function fetchPlantsByNamePagable(
+  name,
+  pageNumber,
+  pageSize,
+  sort
+) {
+  const options = createRequestOptions("GET");
+  const url = `http://localhost:9000/flowercare/v1/plants/search?name=${name}&size=${pageSize}&page=${pageNumber}&sort=name,${sort}`;
+  return await fetchRequest(url, options);
+}
+
 export async function postNewUserPlant(userId, plantId) {
   const options = createRequestOptions("POST", { userId, plantId });
   const url = `http://localhost:9000/flowercare/v1/userplants/add`;

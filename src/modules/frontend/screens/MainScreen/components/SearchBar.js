@@ -17,7 +17,7 @@ const SearchBar = ({ onChange }) => {
         variant="outlined"
         fullWidth
         InputProps={{ sx: styles, endAdornment: <SearchOutlinedIcon /> }}
-        onChange={(e) => onChange(e)}
+        onChange={(e) => onChange(e.target.value)}
       />
     </Stack>
   );

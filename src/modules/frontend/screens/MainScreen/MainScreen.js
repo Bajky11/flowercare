@@ -1,4 +1,4 @@
-import { Box, IconButton, Stack } from "@mui/material";
+import { Box, Divider, IconButton, Stack } from "@mui/material";
 import React, { useEffect, useState } from "react";
 
 import AddOutlinedIcon from "@mui/icons-material/AddOutlined";
@@ -40,7 +40,8 @@ const MainScreen = () => {
         <Stack padding={2} gap={1}>
           <Header username={state.loggedUser.name} />
           <Stack gap={3}>
-            <SearchBar onChange={onSearch} />
+            {/* <SearchBar onChange={onSearch} /> */}
+            <Divider/>
             <PlantList data={state.userPlants} whatToDoOnClick={"showDetail"} />
           </Stack>
 
