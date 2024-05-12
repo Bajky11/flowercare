@@ -9,7 +9,7 @@ const styles = {
   "& fieldset": { border: "none" },
 };
 
-const SearchBar = () => {
+const SearchBar = ({ onChange }) => {
   return (
     <Stack borderRadius={4} boxShadow={"0px 4px 4px 0px rgba(0,0,0,0.1)"}>
       <TextField
@@ -17,6 +17,7 @@ const SearchBar = () => {
         variant="outlined"
         fullWidth
         InputProps={{ sx: styles, endAdornment: <SearchOutlinedIcon /> }}
+        onChange={(e) => onChange(e)}
       />
     </Stack>
   );

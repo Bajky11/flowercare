@@ -1,21 +1,61 @@
-import FullScreenColorContainer from "../../containers/FullScreenColorContainer";
-import Header from "./components/organisms/Header";
-import PlantList from "./components/organisms/PlantList";
-import SearchBar from "./components/atoms/SearchBar";
-import { Stack } from "@mui/material";
+import { Box, IconButton, Stack } from "@mui/material";
+import React, { useEffect, useState } from "react";
 
-const data = [{ name: "rose" }, { name: "basil" }];
+import AddOutlinedIcon from "@mui/icons-material/AddOutlined";
+import AddPlantModal from "./components/AddPlantModal";
+import FullScreenColorContainer from "../../containers/FullScreenColorContainer";
+import Header from "./components/Header";
+import PlantList from "./components/PlantList";
+import SearchBar from "./components/SearchBar";
+import { appStateAtom } from "../../state/state";
+import { fetchUserPlantsById } from "../../api/queries/quieries";
+import { setUserPlantsAtom } from "../../state/atoms/userPlantAtoms";
+import { useAtom } from "jotai";
+
 const MainScreen = () => {
+  const [state] = useAtom(appStateAtom);
+  const [, setUserPlants] = useAtom(setUserPlantsAtom);
+  const [modalOpen, setModalOpen] = useState(false);
+
+  useEffect(() => {
+    if (state && state.loggedUser && state.userPlantsInvalidated) {
+      fetchUserPlantsById(state.loggedUser.id).then((plants) => {
+        console.log(plants);
+        setUserPlants(plants);
+      });
+    }
+  }, [state.loggedUser, state.userPlantsInvalidated]);
+
+  const onSearch = () => {
+    console.log("onSearch");
+  };
+
+  const toggleModal = () => {
+    setModalOpen(!modalOpen);
+  };
+
   return (
-    <FullScreenColorContainer color={"background.light"}>
-      <Stack padding={2} gap={1}> 
-        <Header />
-        <Stack gap={3}>
-          <SearchBar />
-          <PlantList data={data} />
+    <div>
+      <FullScreenColorContainer color={"background.light"}>
+        <Stack padding={2} gap={1}>
+          <Header username={state.loggedUser.name} />
+          <Stack gap={3}>
+            <SearchBar onChange={onSearch} />
+            <PlantList data={state.userPlants} whatToDoOnClick={"showDetail"} />
+          </Stack>
+
+          <Box sx={{ position: "absolute", right: "30px", bottom: "30px" }}>
+            <IconButton
+              sx={{ backgroundColor: "White", width: "48px", height: "48px" }}
+              onClick={toggleModal}
+            >
+              <AddOutlinedIcon />
+            </IconButton>
+          </Box>
         </Stack>
-      </Stack>
-    </FullScreenColorContainer>
+      </FullScreenColorContainer>
+      <AddPlantModal open={modalOpen} toggleOpen={toggleModal} />
+    </div>
   );
 };
 
