@@ -1,7 +1,7 @@
 import { atom } from "jotai";
 
 // Define the initial state with multiple fields
-const initialState = {
+export const initialState = {
   loggedUser: null,
   userPlants: [],
   userPlantsInvalidated: true,

@@ -38,7 +38,7 @@ const MainScreen = () => {
     <div>
       <FullScreenColorContainer color={"background.light"}>
         <Stack padding={2} gap={1}>
-          <Header username={state.loggedUser.name} />
+          <Header username={state.loggedUser ? state.loggedUser.name : ""} />
           <Stack gap={3}>
             {/* <SearchBar onChange={onSearch} /> */}
             <Divider/>
