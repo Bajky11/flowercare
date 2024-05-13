@@ -1,11 +1,10 @@
-import { Avatar, Box, IconButton, Stack, Typography } from "@mui/material";
+import { Avatar, IconButton, Stack, Typography } from "@mui/material";
 import {
   invalidateUserPlantsAtom,
   setUserPlantsAtom,
 } from "../../../state/atoms/userPlantAtoms";
 
 import ArrowBackOutlinedIcon from "@mui/icons-material/ArrowBackOutlined";
-import NavigationIconButton from "../../../components/atoms/NavigationIconButton";
 import { setLoggedUserAtom } from "../../../state/state";
 import { useAtom } from "jotai";
 import { useNavigate } from "react-router-dom";
