@@ -62,7 +62,6 @@ const AddPlantModal = ({ open, toggleOpen }) => {
   return (
     <Modal open={open} onClose={toggleOpen}>
       <ModalContainer>
-        {text}
         <Grid2
           spacing={3}
           direction={"column"}
